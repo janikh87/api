@@ -1,0 +1,7 @@
+Options +FollowSymlinks
+Options -Indexes
+RewriteEngine on
+
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteRule ^number/generate   api.php?action=generate [L]
+RewriteRule ^number/retrieve/([A-Z-a-z0-9]+)  api.php?action=retrieve&secret=$1 [L]
