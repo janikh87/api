@@ -4,12 +4,11 @@ class NumberTable extends Db
 {
 	public function saveNumber(Number $number) 
 	{
-		$sqlQuery = "INSERT INTO numbers(`secret`, `number`)
-        VALUES(:secret, :number)";
+		$sqlQuery = "INSERT INTO numbers(`secret`, `number`) VALUES(:secret, :number)";
         $statement = $this->conn->prepare($sqlQuery);
         $statement->bindValue(":secret", $number->getSecret(), PDO::PARAM_STR);
         $statement->bindValue(":number", $number->getNumber(), PDO::PARAM_INT);
-        $statement->execute();
+        return $statement->execute();
 	}
 
 	public function getNumberBySecret($secret) 

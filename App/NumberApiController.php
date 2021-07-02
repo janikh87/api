@@ -26,11 +26,15 @@ class NumberApiController extends ApiController {
 	{
 		$number = new Number();
 		$number->generateRandomNumber()->generateSecret();
-		$this->getNumberTable()->saveNumber($number);
-		$data = [
-			'secret' => $number->getSecret()
-		];
-		return $this->renderSuccess($data);
+		if($this->getNumberTable()->saveNumber($number)) {
+			$data = [
+				'secret' => $number->getSecret()
+			];
+			return $this->renderSuccess($data);
+		} else {
+			return->renderError(500, 'Database error');
+		}
+
 	}
 
 	protected function retrieveNumber()
