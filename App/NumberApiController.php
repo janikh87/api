@@ -32,7 +32,7 @@ class NumberApiController extends ApiController {
 			];
 			return $this->renderSuccess($data);
 		} else {
-			return->renderError(500, 'Database error');
+			return $this->renderError(500, 'Database error');
 		}
 
 	}
